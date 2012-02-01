@@ -1,6 +1,15 @@
 #!/usr/bin/python
+import sys
 import subprocess
+import logging
+import logging.handlers
 from functools import partial
+
+logger = logging.getLogger("detect-ssid-and-change-location.py")
+logger.setLevel(logging.DEBUG)
+logger.addHandler(logging.handlers.SysLogHandler())
+
+logger.warning(sys.argv)
 
 SSID_GET=("/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/"
           "airport -I | grep ' SSID:' | cut -d ':' -f 2 | tr -d ' '")
