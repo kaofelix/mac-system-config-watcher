@@ -7,3 +7,5 @@ uninstall:
 	launchctl unload ~/Library/LaunchAgents/org.kaofelix.SystemConfigChange.plist
 	rm ~/Library/LaunchAgents/org.kaofelix.SystemConfigChange.plist
 	rm ~/bin/detect-and-trigger.py
+
+reinstall: uninstall install
