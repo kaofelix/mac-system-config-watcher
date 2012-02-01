@@ -1,11 +1,16 @@
+PLIST = org.kaofelix.SystemConfigChange.plist
+SCRIPT = detect-ssid-and-change-location.py
+SCRIPT_PATH = ~/bin
+LAUNCH_AGENTS_PATH = ~/Library/LaunchAgents
+
 install:
-	cp org.kaofelix.SystemConfigChange.plist ~/Library/LaunchAgents/
-	cp detect-ssid-and-change-location.py ~/bin
-	chmod +x ~/bin/detect-ssid-and-change-location.py
-	launchctl load ~/Library/LaunchAgents/org.kaofelix.SystemConfigChange.plist
+	cp $(PLIST) $(LAUNCH_AGENTS_PATH)/
+	cp $(SCRIPT) $(SCRIPT_PATH)
+	chmod +x $(SCRIPT_PATH)/$(SCRIPT)
+	launchctl load $(LAUNCH_AGENTS_PATH)/$(PLIST)
 uninstall:	
-	launchctl unload ~/Library/LaunchAgents/org.kaofelix.SystemConfigChange.plist
-	rm ~/Library/LaunchAgents/org.kaofelix.SystemConfigChange.plist
-	rm ~/bin/detect-ssid-and-change-location.py
+	launchctl unload $(LAUNCH_AGENTS_PATH)/$(PLIST)
+	rm $(LAUNCH_AGENTS_PATH)/$(PLIST)
+	rm $(SCRIPT_PATH)/$(SCRIPT)
 
 reinstall: uninstall install
