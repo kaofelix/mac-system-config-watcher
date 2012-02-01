@@ -2,7 +2,8 @@
 import subprocess
 from functools import partial
 
-SSID_GET="/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/airport -I | grep ' SSID:' | cut -d ':' -f 2 | tr -d ' '"
+SSID_GET=("/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/"
+          "airport -I | grep ' SSID:' | cut -d ':' -f 2 | tr -d ' '")
 WORK_SSIDS=["twdata", "twdata_test"]
 
 shell = partial(subprocess.call, shell=True)

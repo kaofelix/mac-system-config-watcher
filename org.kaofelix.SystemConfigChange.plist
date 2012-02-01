@@ -6,7 +6,7 @@
 	<string>org.kaofelix.SystemConfigChange</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>/Users/kaofelix/bin/detect-ssid-change.py</string>
+		<string>/Users/kaofelix/bin/detect-and-trigger.py</string>
 	</array>
 	<key>WatchPaths</key>
 	<array>
