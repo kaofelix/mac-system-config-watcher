@@ -4,10 +4,17 @@ SCRIPT_PATH = ~/bin
 LAUNCH_AGENTS_PATH = ~/Library/LaunchAgents
 
 install:
-	cp $(PLIST) $(LAUNCH_AGENTS_PATH)/
 	mkdir -p $(SCRIPT_PATH)
 	cp $(SCRIPT) $(SCRIPT_PATH)
 	chmod +x $(SCRIPT_PATH)/$(SCRIPT)
+
+	TEMP=$$(mktemp -t mac-system-config-watcher) \
+		&& ( cat org.kaofelix.SystemConfigChange.plist | \
+		m4 -DUSERNAME=$$(users) ) \
+		> $$TEMP \
+		&& cp $$TEMP $(LAUNCH_AGENTS_PATH)/$(PLIST) \
+		&& rm $$TEMP
+
 	launchctl load $(LAUNCH_AGENTS_PATH)/$(PLIST)
 uninstall:	
 	launchctl unload $(LAUNCH_AGENTS_PATH)/$(PLIST)
